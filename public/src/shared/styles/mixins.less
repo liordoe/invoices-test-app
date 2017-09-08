@@ -1,0 +1,42 @@
+/* Mixin to set font properties based on font size */
+.setFont(11px) {
+    letter-spacing: 0.4px;
+}
+
+.setFontSize(12px) {
+    letter-spacing: 0.4px;
+}
+
+.setFontSize(13px) {
+    letter-spacing: 0.6px;
+}
+
+.setFontSize(14px) {
+    letter-spacing: 0.6px;
+}
+
+.setFontSize(@_) {
+    font-size: @_;
+}
+/* Mixin setFontSize END */
+.flex-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    &.center {
+        justify-content: center;
+    }
+
+    &.between {
+        justify-content: space-between;
+    }
+}
+
+.no-pointer-events {
+    pointer-events: none;
+}
+
+.clickable {
+    cursor: pointer;
+}

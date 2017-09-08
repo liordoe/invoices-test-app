@@ -1,0 +1,62 @@
+.invoice-component {
+    @import 'invoice.variables.less';
+    height: 90%;
+
+    .invoice-form {
+        height: 100%;
+        margin: 0 auto;
+        padding: 10px 30px;
+        border: 1px solid @invoiceFormColor;
+
+        .form-block {
+            justify-content: space-between;
+
+            .key {
+                .setFontSize(16px);
+            }
+        }
+
+        .searchDropdown {
+            margin-bottom: 1rem;
+
+            .searchBtn:hover {
+                background-color: #fff;
+            }
+
+            .searchInput {
+                border: 0;
+                outline: none;
+            }
+        }
+    }
+
+    .last-point {
+        .discount {
+            margin-left: 10px;
+
+            .discount-input {
+                border: 0;
+                outline: none;
+            }
+        }
+
+        .total {
+            margin-right: 50px;
+            .setFontSize(14pt);
+        }
+    }
+
+    .dropdown-menu {
+        overflow-y: auto;
+        max-height: @dropdownHeight;
+    }
+
+    .dropdown-item {
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        width: @dropdownWidth;
+        margin: 5px 10px;
+        cursor: pointer;
+    }
+}

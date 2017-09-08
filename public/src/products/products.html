@@ -1,0 +1,28 @@
+<div class="dashboard">
+    <h2>Products</h2>
+    <hr/>
+    <div class="flex-container" cg-busy="vm.loadPromise">
+        <p class="no-products" ng-if="!vm.products.length">No products to display</p>
+        <table class="table table-hover product-table" ng-if="vm.products.length">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Create Date</th>
+                    <th>Update Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="product in vm.products track by $index" class="clickable" ng-click="vm.editProduct(product.id);">
+                    <td ng-bind="$index + 1"></td>
+                    <td ng-bind="product.name"></td>
+                    <td ng-bind="product.price | currency"></td>
+                    <td ng-bind="product.createdAt | date:'MMM d, y h:mm a'"></td>
+                    <td ng-bind="product.updatedAt | date:'MMM d, y h:mm a'"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <button class="add-item" ui-sref="product"></button>
+</div>

@@ -1,0 +1,23 @@
+{
+  "name": "ng-table-demo-app-es5",
+  "version": "1.0.0",
+  "author": "Vitalii Savchuk <esvit666@gmail.com>",
+  "license": "BSD",
+  "description": "ng-table example app; app written in ECMAScript 5; ng-table added as global script tag",
+  "private": true,
+  "scripts": {
+    "build": "echo \"Nothing to build\"",
+    "clean": "echo \"Nothing to clean\"",
+    "serve": "node ../../node_modules/http-server/bin/http-server -c-1",
+    "start": "npm run server -- -o"
+  },
+  "keywords": [],
+  "dependencies": {
+    "angular": "1.5.8",
+    "bootstrap": "3.3.7",
+    "ng-table": "file:../../"
+  },
+  "devDependencies": {
+    "@types/angular": "^1.5.13"
+  }
+}

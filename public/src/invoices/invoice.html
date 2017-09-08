@@ -1,0 +1,81 @@
+<div class="invoice-component">
+    <h2>Invoice {{ vm.invoice.id}}</h2>
+    <div class="invoice-form" cg-busy="vm.loadPromise">
+        <fieldset>
+            <div class="flex-container form-block">
+                <span class="key">Customer</span>
+                <div class="flex-container">
+                    <div class="dropdown btn-group">
+                        <button type="button" class="btn btn-secondary">
+                          {{vm.customer ? vm.customer.name + ', ' +
+                                          vm.customer.phone :
+                                          'Select customer'}}
+                        </button>
+                        <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <span class="sr-only">Toggle Dropdown</span>
+                        </button>
+
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <p class="dropdown-item" ng-repeat="customer in vm.customers track by $index" ng-click=vm.selectCustomer(customer)>
+                                {{customer.name}}, {{customer.phone}}, {{customer.address}}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+        <hr/>
+        <fieldset cg-busy="vm.itemPromise">
+            <div class="dropdown btn-group searchDropdown">
+                <button type="button" class="btn btn-outline-secondary searchBtn">
+                    <input type="text" class="searchInput" ng-model="$searchText" placeholder="Add new item" ng-change="vm.filterDropdownItems($searchText)" />
+                </button>
+                <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <span class="sr-only">Toggle Dropdown</span>
+                </button>
+
+                <div class="dropdown-menu dropdown-menu-right">
+                    <p class="dropdown-item"
+                       ng-repeat="item in vm.searchItems track by $index"
+                       ng-click=vm.selectItem(item)
+                       ng-if="vm.searchItems.length">
+                        {{item.name}}, {{item.price}}
+                    </p>
+                    <p class="dropdown-item no-pointer-events"
+                       ng-if="!vm.searchItems.length">No items for your search</p>
+                </div>
+            </div>
+            <table class="table table-hover items-table" ng-if="vm.items.length">
+                <tbody>
+                    <tr ng-repeat="item in vm.items track by $index" class="clickable">
+                        <td ng-bind="item.name"></td>
+                        <td>
+                            <input type="number" ng-model="item.quantity" min=1 ng-change="vm.saveItemChange(item)" />
+                        </td>
+                        <td ng-bind="item.price * item.quantity | currency"></td>
+                        <td ng-bind="item.createdAt | date:'MMM d/hh:mm'"></td>
+                        <td ng-bind="item.updatedAt | date:'MMM d/hh:mm'"></td>
+                        <td ng-click="vm.deleteItem">
+                            <button type="button"
+                                    class="btn btn-outline-danger"
+                                    ng-click="vm.deleteItem(item)">Delete</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </fieldset>
+        <fieldset>
+            <div class="flex-container between last-point">
+              <span class="discount">Discount: <input class="discount-input"
+                                      type="number"
+                                      placeholder="Discount"
+                                      ng-model="vm.invoice.discount"
+                                      min=0
+                                      max=100
+                                      ng-change="vm.updateInvoice()" />
+                </span>
+                <span class="total">Total: {{ vm.invoice.total | currency }}</span>
+            </div>
+        </fieldset>
+    </div>
+</div>
